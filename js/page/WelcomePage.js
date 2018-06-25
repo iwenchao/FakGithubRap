@@ -6,26 +6,28 @@
 import ThemeDao from "../expand/dao/ThemeDao";
 import SplashScreen from 'react-native-splash-screen'
 
-export default  class WelcomePage extends Component{
-    componentDidMount(){
+export default class WelcomePage extends Component {
+
+
+    componentDidMount() {
         const {navigator} = this.props;
-        new  ThemeDao().getTheme().then((data=>{
+        new ThemeDao().getTheme().then((data => {
             this.theme = data;
         }));
 
-        this.timer = setTimeout(()=>{
-            InteractionManager.runAfterInteractions(()=>{
+        this.timer = setTimeout(() => {
+            InteractionManager.runAfterInteractions(() => {
                 SplashScreen.hide();
                 navigator.resetTo({
-                    component:HomePage,
-                    name:'HomePage',
-                    params:{
-                        theme:this.theme
+                    component: HomePage,
+                    name: 'HomePage',
+                    params: {
+                        theme: this.theme
                     }
                 });
-                
+
             })
-        },500)
+        }, 500)
     }
 
     componentWillUnmount() {
@@ -33,10 +35,10 @@ export default  class WelcomePage extends Component{
     }
 
 
-    render(){
+    render() {
         return (
             <View style={styles.container}>
-                <Image style={{flex:1, width:null}}
+                <Image style={{flex: 1, width: null}}
                        resizeMode='repeat'
                        source={require('../../res/images/logo.png.png')}/>
             </View>
@@ -45,7 +47,7 @@ export default  class WelcomePage extends Component{
 }
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
+    container: {
+        flex: 1,
     }
 });

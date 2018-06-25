@@ -28,3 +28,5 @@ class RepositoryUtils {
 
 
 }
+
+export default RepositoryUtils;
